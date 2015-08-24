@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas crop</title>
+	
+	<script src="jquery.min.js"></script>
+
+	<style>
+		.canvas-box{ width: 300px; height: 300px; position: relative;-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none }
+		.canvas-box .overlay{ position: absolute; left: 0; top: 0; cursor: move;border:1px solid #69f;}
+		.canvas-box div,.canvas-box canvas{-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}
+	</style>
+</head>
+<body>
+	<input type="file" value="select img" id="ipt" value="选择图片">
+
+	<div class="canvas-box">
+
+	</div>
+
+	<input type="button" data-action="saveCrop" value="保存">
+
+</body>
+	<script src="canvas-crop.js"></script>
+	<script type="text/javascript">
+		var c = new CanvasCrop(['ipt','canvas']);
+		c._option.crop_box_width = 300;
+		c._option.crop_box_height = 200;
+		c._option.crop_min_width = 640;
+		c._option.crop_min_height = 640;
+		c._option.crop_scale = c._option.crop_min_width / c._option.crop_min_height;
+	</script>
+</html>
