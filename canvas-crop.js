@@ -344,7 +344,7 @@
 				self._save.left, self._save.top, self._save.width, self._save.height,
 				0, 0, self._save.width, self._save.height
 			);
-			console.log($result[0].toDataURL());
+			console.log($result[0].toDataURL('image/jpeg'));
 		},
 		
 		
