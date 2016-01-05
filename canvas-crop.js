@@ -344,7 +344,13 @@
 				self._save.left, self._save.top, self._save.width, self._save.height,
 				0, 0, self._save.width, self._save.height
 			);
-			console.log($result[0].toDataURL('image/jpeg'));
+
+			var base64Url = $result[0].toDataURL('image/jpeg');
+
+			setTimeout(function(){//延迟为了避免执行日志输出时，base64url还未生成，就会输出为空
+				console.log(base64Url);
+			}, 100);
+				
 		},
 		
 		
