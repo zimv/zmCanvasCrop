@@ -364,7 +364,7 @@
 			var weight = 0;//设置权重
 			if( this._img.width > this._option.crop_box_width ) weight+=10;
 			if( this._img.height > this._option.crop_box_height ) weight-=10;
-			if( this._option.crop_box_width < this._option.crop_box_height) weight+=5;
+			if( this._img.width / this._img.height > this._option.crop_box_width / this._option.crop_box_height) weight+=5;
 			else weight-=5;
 			if( this._img.width >= this._img.height ) weight++;
 			else weight--;
