@@ -19,16 +19,33 @@
 
 	</div>
 
-	<input type="button" data-action="saveCrop" value="保存">
+	<input type="button" id="save" value="保存">
 
+	<div id="base64"></div>
 </body>
 	<script src="canvas-crop.js"></script>
 	<script type="text/javascript">
-		var c = new CanvasCrop(['ipt']);
-		c._option.crop_box_width = 300;
-		c._option.crop_box_height = 200;
-		c._option.crop_min_width = 640;
-		c._option.crop_min_height = 640;
-		c._option.crop_scale = c._option.crop_min_width / c._option.crop_min_height;
+		function saveCallBack(base64) {
+			$('#base64').html(base64);  
+			//最终把此base64传给后端
+			/**
+			$.ajax({
+				data: {
+					base64: base64
+				} 
+			})
+			**/
+		}
+
+		var c = new ZmCanvasCrop({
+						fileInput: $('#ipt')[0],  
+						saveBtn: $('#save')[0],
+						box_width: 300,  //剪裁容器的最大宽度
+						box_height: 200, //剪裁容器的最大高度
+						min_width: 640,  //要剪裁图片的最小宽度
+						min_height: 640  //要剪裁图片的最小高度
+					}, saveCallBack);
+		
+		
 	</script>
 </html>

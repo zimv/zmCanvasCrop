@@ -1,9 +1,14 @@
 
-	function CanvasCrop(opt){
+	function ZmCanvasCrop(opt, saveCallBack){
 		this.init(opt);
+		this._option.crop_box_width = opt.box_width; //剪裁容器的最大宽度
+		this._option.crop_box_height = opt.box_height;  //剪裁容器的最大高度
+		this._option.crop_min_width = opt.min_width;  //要剪裁图片的最小宽度
+		this._option.crop_min_height = opt.min_height;  //要剪裁图片的最小高度
+		this._option.crop_scale = opt.min_width / opt.min_height;  //图片会按照最小宽高的比例裁剪
 	}
 
-	CanvasCrop.prototype = {
+	ZmCanvasCrop.prototype = {
 
 		_$box : '',
 		_$canvasDown: '',
@@ -42,12 +47,12 @@
 
 		init: function(opt){
 			var self = this;
-			self._input = document.getElementById(opt[0]);
+			self._input = opt.fileInput;
 
 			self._$box = $('.canvas-box');
 			self.readFile();
 
-			$('[data-action="saveCrop"]').on('click', function(){
+			opt.saveBtn.addEventListener('click', function(){
 				self.save();
 			});
 		},
@@ -347,10 +352,9 @@
 
 			var base64Url = $result[0].toDataURL('image/jpeg');
 
-			setTimeout(function(){//延迟为了避免执行日志输出时，base64url还未生成，就会输出为空
-				console.log(base64Url);
-			}, 100);
-				
+			saveCallBack && saveCallBack(base64Url);
+
+			return base64Url;
 		},
 		
 		
