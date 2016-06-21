@@ -365,8 +365,15 @@ ZmCanvasCrop.prototype = {
 		self._resize_btn.$ne.css({left: self._$canvasUp.position().left + self._img_show.crop_width - self._resize_point.size/2, top: self._$canvasUp.position().top - self._resize_point.size/2});//加上宽高,减去本身大小
 		self._resize_btn.$nw.css({left: self._$canvasUp.position().left - self._resize_point.size/2, top: self._$canvasUp.position().top - self._resize_point.size/2});//加上宽高,减去本身大小
 	},
+	parseInt: function(){
+		this._save.width = parseInt(this._save.width);
+		this._save.height = parseInt(this._save.height);
+		this._save.top = parseInt(this._save.top);
+		this._save.left = parseInt(this._save.left);
+	},
 	//保存
 	save: function(){
+		this.parseInt();//取整，避免出现杂边线条
 		var self = this;
 		var $result = $("<canvas width='"+ self._save.width +"' height='"+ self._save.height +"'></canvas>");
 		$('body').append($result);
